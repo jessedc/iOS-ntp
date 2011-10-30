@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8605D9A31290E9110036287D /* ntpAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8605D9A21290E9110036287D /* ntpAViewController.m */; };
-		8605D9BA1290E9600036287D /* ntpAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8605D9B81290E9600036287D /* ntpAViewController.xib */; };
 		86618F2A126BB6430046A2B8 /* NetworkClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 86618F29126BB6430046A2B8 /* NetworkClock.m */; };
 		86619013126C07300046A2B8 /* ntp.hosts in Resources */ = {isa = PBXBuildFile; fileRef = 86619012126C07300046A2B8 /* ntp.hosts */; };
 		8661906F126C0CD70046A2B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8661906E126C0CD70046A2B8 /* UIKit.framework */; };
@@ -24,9 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8605D9A11290E9110036287D /* ntpAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntpAViewController.h; sourceTree = "<group>"; };
-		8605D9A21290E9110036287D /* ntpAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ntpAViewController.m; sourceTree = "<group>"; };
-		8605D9B91290E9600036287D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ntpAViewController.xib; sourceTree = "<group>"; };
 		86618F28126BB6430046A2B8 /* NetworkClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkClock.h; sourceTree = "<group>"; };
 		86618F29126BB6430046A2B8 /* NetworkClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkClock.m; sourceTree = "<group>"; };
 		86618F4A126BC85D0046A2B8 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = ../SynthesizeSingleton.h; sourceTree = SOURCE_ROOT; };
@@ -81,8 +76,6 @@
 			children = (
 				86C39F1D126A1FA100A9DCD1 /* ntpAAppDelegate.h */,
 				86C39F1E126A1FA100A9DCD1 /* ntpAAppDelegate.m */,
-				8605D9A11290E9110036287D /* ntpAViewController.h */,
-				8605D9A21290E9110036287D /* ntpAViewController.m */,
 				86C39F33126A202700A9DCD1 /* AsyncUdpSocket.h */,
 				86C39F34126A202700A9DCD1 /* AsyncUdpSocket.m */,
 				86618F28126BB6430046A2B8 /* NetworkClock.h */,
@@ -110,7 +103,6 @@
 				86C39F16126A1FA100A9DCD1 /* ntpA-Info.plist */,
 				86C39F18126A1FA100A9DCD1 /* InfoPlist.strings */,
 				86C39F20126A1FA100A9DCD1 /* MainWindow.xib */,
-				8605D9B81290E9600036287D /* ntpAViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -167,6 +159,7 @@
 		86C39F00126A1FA000A9DCD1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Ramsay Consulting";
 			};
 			buildConfigurationList = 86C39F03126A1FA000A9DCD1 /* Build configuration list for PBXProject "ntpA" */;
@@ -194,7 +187,6 @@
 				86C39F1A126A1FA100A9DCD1 /* InfoPlist.strings in Resources */,
 				86C39F22126A1FA100A9DCD1 /* MainWindow.xib in Resources */,
 				86619013126C07300046A2B8 /* ntp.hosts in Resources */,
-				8605D9BA1290E9600036287D /* ntpAViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,21 +202,12 @@
 				86C39F35126A202700A9DCD1 /* AsyncUdpSocket.m in Sources */,
 				86618F2A126BB6430046A2B8 /* NetworkClock.m in Sources */,
 				86E4C97B128242B800841647 /* NetAssociation.m in Sources */,
-				8605D9A31290E9110036287D /* ntpAViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8605D9B81290E9600036287D /* ntpAViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8605D9B91290E9600036287D /* en */,
-			);
-			name = ntpAViewController.xib;
-			sourceTree = "<group>";
-		};
 		86C39F18126A1FA100A9DCD1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -256,7 +239,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -272,7 +254,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

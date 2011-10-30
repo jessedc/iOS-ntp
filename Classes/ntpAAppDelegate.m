@@ -12,15 +12,11 @@
 @implementation ntpAAppDelegate
 
 @synthesize window;
-@synthesize viewController;
 
 - (BOOL) application:(UIApplication *) app didFinishLaunchingWithOptions:(NSDictionary *) options {
 
     [NetworkClock sharedNetworkClock];                      // gather up the ntp servers ...
 
-    viewController = [[ntpAViewController alloc] init];
-
-    [window addSubview:viewController.view];
     [window makeKeyAndVisible];
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │  Create a timer that will fire in ten seconds and then every ten seconds thereafter to ask the   │
@@ -55,7 +51,6 @@
 - (void)dealloc {
 
     [window release];
-    [viewController release];
     [super dealloc];
 }
 
