@@ -6,7 +6,6 @@
   ╚══════════════════════════════════════════════════════════════════════════════════════════════════╝*/
 
 #import "ntpAAppDelegate.h"
-#import "ntpAViewController.h"
 #import "NetworkClock.h"
 
 @implementation ntpAAppDelegate
