@@ -18,6 +18,8 @@
 
     [NetworkClock sharedNetworkClock];                      // gather up the ntp servers ...
 
+    viewController = [[ntpAViewController alloc] init];
+
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐

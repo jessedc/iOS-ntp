@@ -34,7 +34,7 @@
 @implementation NetworkClock
 
 - (id) init {
-    if (nil == [super init]) return nil;
+    if ((self = [super init]) == nil) return nil;
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │ Prepare a sort-descriptor to sort associations based on their dispersion, and then create an     │
   │ array of empty associations to use ...                                                           │

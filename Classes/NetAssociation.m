@@ -34,7 +34,7 @@ static double pollIntervals[18] = {
 
 - (void) queryTimeServer:(NSTimer *) timer;     // query the association's server (fired by timer)
 
-- (NSDate *)  dateFromNetworkTime:(struct ntpTimestamp *) networkTime;
+- (NSDate *) dateFromNetworkTime:(struct ntpTimestamp *) networkTime;
 - (NSData *) createPacket;
 - (void) evaluatePacket;
 
@@ -54,7 +54,7 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
 
 /*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
   ┃ Initialize the association with a blank socket and prepare the time transaction to happen every  ┃
-  ┃ 20 seconds (initial value) ...                                                                   ┃
+  ┃ 16 seconds (initial value) ...                                                                   ┃
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
 - (id) init:(NSString *) serverName {
     if ((self = [super init]) == nil) return nil;
@@ -239,15 +239,14 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"assoc-good" object:self];
         }
     }
-    
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │   .. if the association is providing times which don't vary much, we could increase its polling  │
   │      interval.  In practice, once things settle down, the standard deviation on any time server  │
   │      seems to fall in the 70-120mS range (plenty close for our work).  We usually pick up a few  │
   │      stratum=1 servers, it would be a Good Thing to not hammer those so hard ...                 │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
-    if (stratum == 1) pollingIntervalIndex = 6;
-    if (stratum == 2) pollingIntervalIndex = 5;
+    if (stratum == 1) pollingIntervalIndex = 5;             // 72 seconds
+    if (stratum == 2) pollingIntervalIndex = 6;             // 35 seconds
     if ([repeatingTimer timeInterval] != pollIntervals[pollingIntervalIndex]) {
         NTP_Logging(@"[%@] poll interval adusted: %3.1f >> %3.1f", server,
                     [repeatingTimer timeInterval], pollIntervals[pollingIntervalIndex]);
@@ -263,7 +262,6 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
 
 - (BOOL) onUdpSocket:(AsyncUdpSocket *)sender didReceiveData:(NSData *)data
              withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port {
-
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │  grab the packet arrival time as fast as possible, before computations below ...                 │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
