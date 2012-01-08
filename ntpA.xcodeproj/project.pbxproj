@@ -13,6 +13,7 @@
 		8661907B126C0CEC0046A2B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8661907A126C0CEC0046A2B8 /* Foundation.framework */; };
 		86619082126C0CFD0046A2B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86619081126C0CFD0046A2B8 /* CoreGraphics.framework */; };
 		86619086126C0D120046A2B8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86619085126C0D120046A2B8 /* CFNetwork.framework */; };
+		86B8296314B9353B008C8D34 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 86B8296214B9353B008C8D34 /* LICENSE */; };
 		86C39F1A126A1FA100A9DCD1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86C39F18126A1FA100A9DCD1 /* InfoPlist.strings */; };
 		86C39F1C126A1FA100A9DCD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C39F1B126A1FA100A9DCD1 /* main.m */; };
 		86C39F1F126A1FA100A9DCD1 /* ntpAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C39F1E126A1FA100A9DCD1 /* ntpAAppDelegate.m */; };
@@ -30,6 +31,7 @@
 		8661907A126C0CEC0046A2B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86619081126C0CFD0046A2B8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		86619085126C0D120046A2B8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		86B8296214B9353B008C8D34 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		86C39F0D126A1FA100A9DCD1 /* ntpA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ntpA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C39F16126A1FA100A9DCD1 /* ntpA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ntpA-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		86C39F17126A1FA100A9DCD1 /* ntpA_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ntpA_Prefix.pch; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 		86C39EFE126A1FA000A9DCD1 = {
 			isa = PBXGroup;
 			children = (
+				86B8296214B9353B008C8D34 /* LICENSE */,
 				86C39F06126A1FA100A9DCD1 /* Other Sources */,
 				86C39F05126A1FA000A9DCD1 /* Classes */,
 				86C39F07126A1FA100A9DCD1 /* Resources */,
@@ -187,6 +190,7 @@
 				86C39F1A126A1FA100A9DCD1 /* InfoPlist.strings in Resources */,
 				86C39F22126A1FA100A9DCD1 /* MainWindow.xib in Resources */,
 				86619013126C07300046A2B8 /* ntp.hosts in Resources */,
+				86B8296314B9353B008C8D34 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
