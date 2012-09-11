@@ -10,13 +10,11 @@
 
 @implementation ntpAAppDelegate
 
-@synthesize window;
-
 - (BOOL) application:(UIApplication *) app didFinishLaunchingWithOptions:(NSDictionary *) options {
 
-    [NetworkClock sharedNetworkClock];                      // gather up the ntp servers ...
+    [NetworkClock sharedInstance];                          // gather up the ntp servers ...
 
-    [window makeKeyAndVisible];
+    [_window makeKeyAndVisible];
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │  Create a timer that will fire in ten seconds and then every ten seconds thereafter to ask the   │
   │ network clock what time it is.                                                                   │
@@ -27,14 +25,13 @@
                                         userInfo:nil repeats:YES];
 
     [[NSRunLoop currentRunLoop] addTimer:repeatingTimer forMode:NSDefaultRunLoopMode];
-    [repeatingTimer release];
 
     return YES;
 }
 
 - (void) repeatingMethod:(NSTimer *) theTimer {
     systemTime = [NSDate date];
-    networkTime = [[NetworkClock sharedNetworkClock] networkTime];
+    networkTime = [[NetworkClock sharedInstance] networkTime];
 
     sysClockLabel.text = [NSString stringWithFormat:@"%@", systemTime];
     netClockLabel.text = [NSString stringWithFormat:@"%@", networkTime];
@@ -44,13 +41,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 
-    [[NetworkClock sharedNetworkClock] finishAssociations];   // be nice and let all the servers go ...
-}
-
-- (void)dealloc {
-
-    [window release];
-    [super dealloc];
+    [[NetworkClock sharedInstance] finishAssociations];     // be nice and let all the servers go ...
 }
 
 @end

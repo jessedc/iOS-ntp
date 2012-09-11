@@ -21,8 +21,8 @@
     
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *           window;
-@property (nonatomic, retain) IBOutlet ntpAViewController * viewController;
+@property (nonatomic, strong) IBOutlet UIWindow *           window;
+@property (nonatomic, strong) IBOutlet ntpAViewController * viewController;
 
 - (void) repeatingMethod:(NSTimer*)theTimer;
 

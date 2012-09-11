@@ -28,7 +28,7 @@
     
 }
 
-+ (NetworkClock *) sharedNetworkClock;
++ (NetworkClock *) sharedInstance;
 
 - (void) createAssociations;
 - (void) reportAssociations;

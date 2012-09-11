@@ -7,20 +7,6 @@
 
 #import "NetworkClock.h"
 
-@interface NetworkClock (PrivateMethods)
-
-- (void) offsetAverage;
-
-- (NSString *) hostAddress:(struct sockaddr_in *) sockAddr;
-
-- (void) associationTrue:(NSNotification *) notification;
-- (void) associationFake:(NSNotification *) notification;
-
-- (void) applicationBack:(NSNotification *) notification;
-- (void) applicationFore:(NSNotification *) notification;
-
-@end
-
 #pragma mark -
 #pragma mark                        N E T W O R K • C L O C K
 
@@ -40,8 +26,8 @@
   │ array of empty associations to use ...                                                           │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
     dispersionSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dispersion" ascending:YES];
-    sortDescriptors = [[NSArray arrayWithObject:dispersionSortDescriptor] retain];
-    timeAssociations = [[NSMutableArray arrayWithCapacity:48] retain];
+    sortDescriptors = @[dispersionSortDescriptor];
+    timeAssociations = [NSMutableArray arrayWithCapacity:48];
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │ .. and fill that array with the time hosts obtained from "ntp.hosts" ..                          │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
@@ -125,12 +111,11 @@
 
     NSArray *   ntpDomains = [fileData componentsSeparatedByCharactersInSet:
                                                                 [NSCharacterSet newlineCharacterSet]];
-    [fileData release];
 
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │  for each NTP service domain name in the 'ntp.hosts' file : "0.pool.ntp.org" etc ...             │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
-    NSMutableSet *          hostAddresses = [[NSMutableSet setWithCapacity:48] retain];
+    NSMutableSet *          hostAddresses = [NSMutableSet setWithCapacity:48];
 
     for (NSString * ntpDomainName in ntpDomains) {
         if ([ntpDomainName length] == 0 ||
@@ -142,7 +127,7 @@
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │  ... resolve the IP address of the named host : "0.pool.ntp.org" --> [123.45.67.89], ...         │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
-        CFHostRef ntpHostName = CFHostCreateWithName (kCFAllocatorDefault, (CFStringRef)ntpDomainName);
+        CFHostRef ntpHostName = CFHostCreateWithName (kCFAllocatorDefault, (__bridge CFStringRef)ntpDomainName);
         if (ntpHostName == nil) {
             LogInProduction(@"CFHostCreateWithName ntpHost <nil>");
             continue;                                           // couldn't create 'host object' ...
@@ -171,7 +156,7 @@
   │  for each (sockaddr structure wrapped by a CFDataRef/NSData *) associated with the hostname,     │
   │  drop the IP address string into a Set to remove duplicates.                                     │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
-        for (NSData * ntpHost in (NSArray *)ntpHostAddrs) {
+        for (NSData * ntpHost in (__bridge NSArray *)ntpHostAddrs) {
             [hostAddresses addObject:[self hostAddress:(struct sockaddr_in *)[ntpHost bytes]]];
         }
         CFRelease(ntpHostName);
@@ -188,12 +173,11 @@
   │  ... now start an 'association' (network clock object) for each address.                         │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
     for (NSString * server in hostAddresses) {
-        NetAssociation *    timeAssociation = [[[NetAssociation alloc] init:server] autorelease];
+        NetAssociation *    timeAssociation = [[NetAssociation alloc] init:server];
 
         [timeAssociations addObject:timeAssociation];
         [timeAssociation enable];                               // starts are randomized internally
     }
-    [hostAddresses release];
 }
 
 - (void) reportAssociations {
@@ -223,7 +207,7 @@
                     format:@"Cannot convert address to string."];
 	}
 
-	return [NSString stringWithCString:addrBuf encoding:NSASCIIStringEncoding];
+	return @(addrBuf);
 }
 
 #pragma mark                        N o t i f i c a t i o n • T r a p s
@@ -267,57 +251,13 @@
 //  [self enableAssociations];
 }
 
-#import "SynthesizeSingleton.h"
-
 #pragma mark -
 #pragma mark                        S I N G L E T O N • B E H A V I O U R
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(NetworkClock);
-
-/*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-  ┃ the SYNTHESIZE_SINGLETON_FOR_CLASS macro expands thus:                                           ┃
-  ┃──────────────────────────────────────────────────────────────────────────────────────────────────┃
-  ┃                                                                                                  ┃
-  ┃         static Singleton *sharedSingleton = ((void*)0);                                          ┃
-  ┃                                                                                                  ┃
-  ┃         + (Singleton *)sharedSingleton {                                                         ┃
-  ┃             @synchronized(self) {                                                                ┃
-  ┃                 if (sharedSingleton == ((void*)0)) {                                             ┃
-  ┃                     sharedSingleton = [[self alloc] init];                                       ┃
-  ┃                 }                                                                                ┃
-  ┃             }                                                                                    ┃
-  ┃             return sharedSingleton;                                                              ┃
-  ┃         }                                                                                        ┃
-  ┃                                                                                                  ┃
-  ┃         + (id)allocWithZone:(NSZone *)zone {                                                     ┃
-  ┃             @synchronized(self) {                                                                ┃
-  ┃                 if (sharedSingleton == ((void*)0)) {                                             ┃
-  ┃                     sharedSingleton = [super allocWithZone:zone];                                ┃
-  ┃                     return sharedSingleton;                                                      ┃
-  ┃                 }                                                                                ┃
-  ┃             }                                                                                    ┃
-  ┃             return ((void*)0);                                                                   ┃
-  ┃         }                                                                                        ┃
-  ┃                                                                                                  ┃
-  ┃         - (id)copyWithZone:(NSZone *)zone {                                                      ┃
-  ┃             return self;                                                                         ┃
-  ┃         }                                                                                        ┃
-  ┃                                                                                                  ┃
-  ┃         - (id)retain {                                                                           ┃
-  ┃             return self;                                                                         ┃
-  ┃         }                                                                                        ┃
-  ┃                                                                                                  ┃
-  ┃         - (NSUInteger)retainCount {                                                              ┃
-  ┃             return (2147483647L *2UL +1UL);                                                      ┃
-  ┃         }                                                                                        ┃
-  ┃                                                                                                  ┃
-  ┃         - (void)release {                                                                        ┃
-  ┃         }                                                                                        ┃
-  ┃                                                                                                  ┃
-  ┃         - (id)autorelease {                                                                      ┃
-  ┃             return self;                                                                         ┃
-  ┃         };                                                                                       ┃
-  ┃                                                                                                  ┃
-  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
++ (NetworkClock *) sharedInstance {
+    DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
+        return [[self alloc] init];
+    });
+}
 
 @end
