@@ -1,10 +1,10 @@
 # iOS-ntp
 
-This project is a mirror of the iOS-ntp project by Gavin Eadie<gavineadie@gmail> hosted on [Google code](http://code.google.com/p/ios-ntp/)
+This project is a mirror of the iOS-ntp project hosted on [Google code](http://code.google.com/p/ios-ntp/) by [Gavin Eadie](gavineadie@gmail)
 
 ### Notes
 
-The file structure and state of this code is quite old, but it is arc compatible and runs fine on Xcode 4.6.2.
+The structure of this project may need some cleaning up and modernisation but it is ARC compatible and runs fine on Xcode 4.6.2.
 
 ### Running the project
 
@@ -12,7 +12,7 @@ The file structure and state of this code is quite old, but it is arc compatible
     git submodule update --init
     open ntpA.xcodeproj
 
-# Original README
+## Original README
 
 An application testbed and a network time protocol client for iOS. **This is a work in progress.**
 
@@ -22,7 +22,7 @@ This project contains code to provide time obtained from standard time servers u
 
 The original project is available here: http://code.google.com/p/ios-ntp
 
-# License
+## License
 
 The MIT License (MIT)
 Copyright (c) 2012, Ramsay Consulting
