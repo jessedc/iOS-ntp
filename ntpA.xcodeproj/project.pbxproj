@@ -18,8 +18,8 @@
 		86C39F1C126A1FA100A9DCD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C39F1B126A1FA100A9DCD1 /* main.m */; };
 		86C39F1F126A1FA100A9DCD1 /* ntpAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C39F1E126A1FA100A9DCD1 /* ntpAAppDelegate.m */; };
 		86C39F22126A1FA100A9DCD1 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C39F20126A1FA100A9DCD1 /* MainWindow.xib */; };
-		86C39F35126A202700A9DCD1 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C39F34126A202700A9DCD1 /* AsyncUdpSocket.m */; };
 		86E4C97B128242B800841647 /* NetAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E4C97A128242B800841647 /* NetAssociation.m */; };
+		88D57DDD1757094A00C9D1BC /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D57DDB1757094A00C9D1BC /* AsyncUdpSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,10 +39,10 @@
 		86C39F1D126A1FA100A9DCD1 /* ntpAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ntpAAppDelegate.h; sourceTree = "<group>"; };
 		86C39F1E126A1FA100A9DCD1 /* ntpAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ntpAAppDelegate.m; sourceTree = "<group>"; };
 		86C39F21126A1FA100A9DCD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		86C39F33126A202700A9DCD1 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = "/Users/gavin/Development/iOS/cocoaasyncsocket-read-only/RunLoop/AsyncUdpSocket.h"; sourceTree = "<absolute>"; };
-		86C39F34126A202700A9DCD1 /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = "/Users/gavin/Development/iOS/cocoaasyncsocket-read-only/RunLoop/AsyncUdpSocket.m"; sourceTree = "<absolute>"; };
 		86E4C979128242B800841647 /* NetAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAssociation.h; sourceTree = "<group>"; };
 		86E4C97A128242B800841647 /* NetAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAssociation.m; sourceTree = "<group>"; };
+		88D57DDA1757094A00C9D1BC /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = Vendor/CocoaAsyncSocket/RunLoop/AsyncUdpSocket.h; sourceTree = "<group>"; };
+		88D57DDB1757094A00C9D1BC /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = Vendor/CocoaAsyncSocket/RunLoop/AsyncUdpSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +66,8 @@
 				86B8296214B9353B008C8D34 /* LICENSE */,
 				86C39F06126A1FA100A9DCD1 /* Other Sources */,
 				86C39F05126A1FA000A9DCD1 /* Classes */,
+				88D57DD71757093A00C9D1BC /* Vendor */,
 				86C39F07126A1FA100A9DCD1 /* Resources */,
-				86FFAD7B126AD22300F5B70C /* Resources-iPad */,
 				86C39F08126A1FA100A9DCD1 /* Frameworks */,
 				86C39F0E126A1FA100A9DCD1 /* Products */,
 			);
@@ -78,8 +78,6 @@
 			children = (
 				86C39F1D126A1FA100A9DCD1 /* ntpAAppDelegate.h */,
 				86C39F1E126A1FA100A9DCD1 /* ntpAAppDelegate.m */,
-				86C39F33126A202700A9DCD1 /* AsyncUdpSocket.h */,
-				86C39F34126A202700A9DCD1 /* AsyncUdpSocket.m */,
 				86618F28126BB6430046A2B8 /* NetworkClock.h */,
 				86618F29126BB6430046A2B8 /* NetworkClock.m */,
 				86E4C979128242B800841647 /* NetAssociation.h */,
@@ -127,11 +125,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		86FFAD7B126AD22300F5B70C /* Resources-iPad */ = {
+		88D57DD71757093A00C9D1BC /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				88D57DDA1757094A00C9D1BC /* AsyncUdpSocket.h */,
+				88D57DDB1757094A00C9D1BC /* AsyncUdpSocket.m */,
 			);
-			name = "Resources-iPad";
+			name = Vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,9 +201,9 @@
 			files = (
 				86C39F1C126A1FA100A9DCD1 /* main.m in Sources */,
 				86C39F1F126A1FA100A9DCD1 /* ntpAAppDelegate.m in Sources */,
-				86C39F35126A202700A9DCD1 /* AsyncUdpSocket.m in Sources */,
 				86618F2A126BB6430046A2B8 /* NetworkClock.m in Sources */,
 				86E4C97B128242B800841647 /* NetAssociation.m in Sources */,
+				88D57DDD1757094A00C9D1BC /* AsyncUdpSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
