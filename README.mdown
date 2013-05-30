@@ -8,7 +8,9 @@ The structure of this project may need some cleaning up and modernisation but it
 
 ### Running the project
 
-    git clone git://github.comjessedc/iOS-ntp.git
+    git clone git://github.com/jessedc/iOS-ntp.git ios-ntp
+    cd ios-ntp
+    git submodule sync
     git submodule update --init
     open ntpA.xcodeproj
 
