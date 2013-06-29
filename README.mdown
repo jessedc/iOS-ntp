@@ -6,6 +6,8 @@ This project is a mirror of the iOS-ntp project hosted on [Google code](http://c
 
 The structure of this project may need some cleaning up and modernisation but it is ARC compatible and runs fine on Xcode 4.6.2.
 
+It probably neeeds to be worked around a newer version of Cocoa Async Socket https://github.com/mattsoftware/CocoaAsyncSocket
+
 ### Running the project
 
     git clone git://github.com/jessedc/iOS-ntp.git ios-ntp
